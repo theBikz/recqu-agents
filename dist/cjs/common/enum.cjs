@@ -132,7 +132,7 @@ exports.Callback = void 0;
 })(exports.Callback || (exports.Callback = {}));
 exports.Constants = void 0;
 (function (Constants) {
-    Constants["OFFICIAL_CODE_BASEURL"] = "https://api.librechat.ai/v1";
+    Constants["OFFICIAL_CODE_BASEURL"] = "http://localhost:8000";
     Constants["EXECUTE_CODE"] = "execute_code";
     Constants["CONTENT_AND_ARTIFACT"] = "content_and_artifact";
 })(exports.Constants || (exports.Constants = {}));
