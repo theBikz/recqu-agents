@@ -100,7 +100,7 @@ export declare enum Callback {
     TOOL_END = "handleToolEnd"
 }
 export declare enum Constants {
-    OFFICIAL_CODE_BASEURL = "http://localhost:8000",
+    OFFICIAL_CODE_BASEURL = "http://localhost:8050",
     EXECUTE_CODE = "execute_code",
     CONTENT_AND_ARTIFACT = "content_and_artifact"
 }
