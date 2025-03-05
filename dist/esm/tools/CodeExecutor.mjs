@@ -63,6 +63,8 @@ Usage:
             ...params,
         };
         try {
+            console.error("Incoming Request")
+            console.error(postData)
             const fetchOptions = {
                 method: 'POST',
                 headers: {
@@ -81,6 +83,7 @@ Usage:
             }
             const result = await response.json();
             console.log("Result\n", result)
+            console.error("response", response)
             let formattedOutput = '';
             if (result.stdout) {
                 formattedOutput += `stdout:\n${result.stdout}\n`;
