@@ -5,6 +5,7 @@ import { HttpsProxyAgent } from 'https-proxy-agent';
 import { tool } from '@langchain/core/tools';
 import { getEnvironmentVariable } from '@langchain/core/utils/env';
 import { Constants, EnvVar } from '../common/enum.mjs';
+const log = bunyan.createLogger({ name: 'CodeExecutor' });
 
 config();
 const imageExtRegex = /\.(jpg|jpeg|png|gif|webp)$/i;
@@ -63,8 +64,8 @@ Usage:
             ...params,
         };
         try {
-            console.error("Incoming Request")
-            console.error(postData)
+            log.info("Incoming Request");
+            log.info({ postData }, "Post Data");
             const fetchOptions = {
                 method: 'POST',
                 headers: {
@@ -82,8 +83,8 @@ Usage:
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const result = await response.json();
-            console.log("Result\n", result)
-            console.error("response", response)
+            log.info({ result }, "Result");
+            log.info({ response }, "Response");
             let formattedOutput = '';
             if (result.stdout) {
                 formattedOutput += `stdout:\n${result.stdout}\n`;

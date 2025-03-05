@@ -85,6 +85,7 @@
     "@smithy/protocol-http": "^3.0.6",
     "@smithy/signature-v4": "^2.0.10",
     "@smithy/util-utf8": "^2.0.0",
+    "bunyan": "^1.8.15",
     "dotenv": "^16.4.7",
     "https-proxy-agent": "^7.0.6",
     "nanoid": "^3.3.7"
