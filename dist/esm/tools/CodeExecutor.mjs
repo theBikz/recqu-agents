@@ -80,6 +80,7 @@ Usage:
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const result = await response.json();
+            console.log("Result\n", result)
             let formattedOutput = '';
             if (result.stdout) {
                 formattedOutput += `stdout:\n${result.stdout}\n`;
