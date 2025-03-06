@@ -5,6 +5,7 @@ import { HttpsProxyAgent } from 'https-proxy-agent';
 import { tool } from '@langchain/core/tools';
 import { getEnvironmentVariable } from '@langchain/core/utils/env';
 import { Constants, EnvVar } from '../common/enum.mjs';
+import {bunyan} from 'bunyan'
 const log = bunyan.createLogger({ name: 'CodeExecutor' });
 
 config();
