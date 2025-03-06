@@ -5,8 +5,6 @@ import { HttpsProxyAgent } from 'https-proxy-agent';
 import { tool } from '@langchain/core/tools';
 import { getEnvironmentVariable } from '@langchain/core/utils/env';
 import { Constants, EnvVar } from '../common/enum.mjs';
-import {bunyan} from 'bunyan'
-const log = bunyan.createLogger({ name: 'CodeExecutor' });
 
 config();
 const imageExtRegex = /\.(jpg|jpeg|png|gif|webp)$/i;
@@ -65,8 +63,6 @@ Usage:
             ...params,
         };
         try {
-            log.info("Incoming Request");
-            log.info({ postData }, "Post Data");
             const fetchOptions = {
                 method: 'POST',
                 headers: {
@@ -84,17 +80,16 @@ Usage:
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const result = await response.json();
-            log.info({ result }, "Result");
-            log.info({ response }, "Response");
+
             let formattedOutput = '';
-            if (result.stdout) {
-                formattedOutput += `stdout:\n${result.stdout}\n`;
+            if (result.run.stdout) {
+                formattedOutput += `stdout:\n${result.run.stdout}\n`;
             }
             else {
                 formattedOutput += 'stdout: Empty. Ensure you\'re writing output explicitly.\n';
             }
-            if (result.stderr)
-                formattedOutput += `stderr:\n${result.stderr}\n`;
+            if (result.run.stderr)
+                formattedOutput += `stderr:\n${result.run.stderr}\n`;
             if (result.files && result.files.length > 0) {
                 formattedOutput += 'Generated files:\n';
                 const fileCount = result.files.length;

@@ -83,14 +83,14 @@ Usage:
             }
             const result = await response.json();
             let formattedOutput = '';
-            if (result.stdout) {
-                formattedOutput += `stdout:\n${result.stdout}\n`;
+            if (result.run.stdout) {
+                formattedOutput += `stdout:\n${result.run.stdout}\n`;
             }
             else {
                 formattedOutput += 'stdout: Empty. Ensure you\'re writing output explicitly.\n';
             }
-            if (result.stderr)
-                formattedOutput += `stderr:\n${result.stderr}\n`;
+            if (result.run.stderr)
+                formattedOutput += `stderr:\n${result.run.stderr}\n`;
             if (result.files && result.files.length > 0) {
                 formattedOutput += 'Generated files:\n';
                 const fileCount = result.files.length;
