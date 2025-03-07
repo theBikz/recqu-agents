@@ -7,6 +7,13 @@ var httpsProxyAgent = require('https-proxy-agent');
 var tools = require('@langchain/core/tools');
 var env = require('@langchain/core/utils/env');
 var _enum = require('../common/enum.cjs');
+const bunyan = require('bunyan');
+
+const logger = bunyan.createLogger({
+    name: 'my-app',  // Name of your application
+    level: 'info',   // Logging level (trace, debug, info, warn, error, fatal)
+    serializers: bunyan.stdSerializers, // Standard serializers
+  });
 
 dotenv.config();
 const imageExtRegex = /\.(jpg|jpeg|png|gif|webp)$/i;
@@ -65,6 +72,7 @@ Usage:
             ...params,
         };
         try {
+            logger.debug('postData : ', postData);
             const fetchOptions = {
                 method: 'POST',
                 headers: {

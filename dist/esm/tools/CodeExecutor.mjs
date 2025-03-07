@@ -5,7 +5,13 @@ import { HttpsProxyAgent } from 'https-proxy-agent';
 import { tool } from '@langchain/core/tools';
 import { getEnvironmentVariable } from '@langchain/core/utils/env';
 import { Constants, EnvVar } from '../common/enum.mjs';
+import bunyan from 'bunyan';
 
+const logger = bunyan.createLogger({
+    name: 'my-app', // Name of your application
+    level: 'debug',  // Logging level: trace, debug, info, warn, error, fatal
+    serializers: bunyan.stdSerializers, // Standard serializers
+  });
 config();
 const imageExtRegex = /\.(jpg|jpeg|png|gif|webp)$/i;
 const getCodeBaseURL = () => getEnvironmentVariable(EnvVar.CODE_BASEURL) ?? Constants.OFFICIAL_CODE_BASEURL;
@@ -63,6 +69,7 @@ Usage:
             ...params,
         };
         try {
+            logger.debug("PostData : ", postData);
             const fetchOptions = {
                 method: 'POST',
                 headers: {
